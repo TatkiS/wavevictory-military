@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хвиля Перемоги</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0057B8, #FFD700);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            animation: colorCycle 6s infinite;
+        }
+
+        @keyframes colorCycle {
+            0% { color: #ff2d55; }
+            50% { color: #ffffff; }
+            100% { color: #4cd964; }
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero {
+            margin: 20px auto;
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .player-container {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        #playButton, #volumeControl {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        #playButton {
+            background: linear-gradient(90deg, #0057B8 50%, #FFD700 50%);
+            color: white;
+        }
+
+        #volumeControl {
+            width: 150px;
+        }
+
+        .scrolling-banner {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #FFD700;
+            padding: 10px;
+            font-size: 1.1rem;
+        }
+
+        .scrolling-banner span {
+            display: inline-block;
+            animation: scrollText 20s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Хвиля Перемоги</h1>
+
+
+    <div class="scrolling-banner">
+        <span>ПУТІН ХУЙЛО! ВСІ МОСКАЛІ ПІДАРАСИ! ВСЕ БУДЕ УКРАЇНА! УКРАЇНА ПОНАД УСЕ! ПУТІН ХУЙЛО! ВСІ МОСКАЛІ ПІДАРАСИ! ВСЕ БУДЕ УКРАЇНА! УКРАЇНА ПОНАД УСЕ! ПУТІН ХУЙЛО! ВСІ МОСКАЛІ ПІДАРАСИ! ВСЕ БУДЕ УКРАЇНА! УКРАЇНА ПОНАД УСЕ!!НА РАДІО ХВИЛЯ ПЕРЕМОГИ НЕМАЄ РЕКЛАМИ! ПІДТРИМАТИ НАС МОЖНА НАЖАВ НА КНОПОЧКУ НА *КАВУ*ДЯКУЄМО! &bull;</span>
+    </div>
+
+    <main>
+        <div class="hero">
+            <h2>Про нас</h2>
+            <p>"Хвиля Перемоги" – це радіо, яке об'єднує українську музику та культуру, створюючи неповторну атмосферу для кожного слухача.</p>
+        </div>
+
+        <section class="player-container" id="player">
+            <h2>Слухайте прямо зараз</h2>
+            <audio id="audio" crossorigin="anonymous">
+                <source src="https://stream.zeno.fm/sikg4vgnv2jvv" type="audio/mpeg">
+                Ваш браузер не підтримує аудіо елемент.
+            </audio>
+            <button id="playButton">Play</button>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1">
+        </section>
+
+        <a href="https://bit.ly/3APXqaS" target="_blank" class="buymeacoffee">Підтримати нас</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Хвиля Перемоги. Всі права захищені.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const audio = document.getElementById('audio');
+            const playButton = document.getElementById('playButton');
+            const volumeControl = document.getElementById('volumeControl');
+
+            playButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.textContent = 'Pause';
+                } else {
+                    audio.pause();
+                    playButton.textContent = 'Play';
+                }
+            });
+
+            volumeControl.addEventListener('input', () => {
+                audio.volume = volumeControl.value;
+            });
+        });
+    </script>
+</body>
+</html>
